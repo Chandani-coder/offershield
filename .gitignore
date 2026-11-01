@@ -1,0 +1,20 @@
+# Python
+__pycache__/
+*.py[cod]
+
+# Virtual environments
+venv/
+.venv/
+
+# Secrets
+.env
+
+# Notebooks
+.ipynb_checkpoints/
+
+# Raw datasets
+data/raw/*
+!data/raw/.gitkeep
+
+# OS files
+.DS_Store
