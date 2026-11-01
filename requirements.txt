@@ -1,6 +1,9 @@
 numpy
 pandas
-scikit-learn
+scikit-learn==1.9.1
 matplotlib
 seaborn
 jupyter
+fastapi
+uvicorn[standard]
+joblib==1.6.0

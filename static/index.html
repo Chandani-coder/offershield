@@ -1,0 +1,341 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Explore job posting patterns associated with recruitment fraud.">
+    <title>OfferShield | Job Posting Research</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <script src="/static/app.js" defer></script>
+</head>
+
+<body>
+
+<header class="site-header">
+    <a href="/" class="brand">OFFER<span>SHIELD</span></a>
+
+    <nav>
+        <a href="#examine">Check a job</a>
+        <a href="#research">Research</a>
+        <a href="#method">About</a>
+    </nav>
+
+    <span class="edition">JOB POSTING RESEARCH</span>
+</header>
+
+<main>
+
+    <!-- Introduction -->
+    <section class="hero">
+        <div class="eyebrow">A CLOSER LOOK AT JOB ADVERTISEMENTS</div>
+
+        <h1>Before you apply,<br>take a closer look.</h1>
+
+        <p>
+            Paste a job advertisement below and see what patterns
+            our model identifies. It might help you decide what
+            deserves a closer look before applying.
+        </p>
+    </section>
+
+
+    <!-- Job posting form -->
+    <section class="examine-section" id="examine">
+
+        <div class="section-heading">
+            <div>
+                <span class="section-number">01 / JOB CHECK</span>
+                <h2>Let's look at this job posting.</h2>
+            </div>
+
+            <span class="section-note">Add the details you have</span>
+        </div>
+
+        <form id="analysis-form">
+
+            <div class="field">
+                <label for="title">Job title</label>
+                <input
+                    id="title"
+                    name="title"
+                    placeholder="e.g. Marketing Intern"
+                >
+            </div>
+
+            <div class="field">
+                <label for="company_profile">A little about the company</label>
+                <textarea
+                    id="company_profile"
+                    name="company_profile"
+                    rows="3"
+                    placeholder="What does the company do?"
+                ></textarea>
+            </div>
+
+            <div class="field">
+                <label for="description">What's the job about?</label>
+                <textarea
+                    id="description"
+                    name="description"
+                    rows="6"
+                    placeholder="Paste the job advertisement here..."
+                ></textarea>
+            </div>
+
+            <div class="field-grid">
+
+                <div class="field">
+                    <label for="requirements">What are they looking for?</label>
+                    <textarea
+                        id="requirements"
+                        name="requirements"
+                        rows="4"
+                        placeholder="Skills, experience or qualifications..."
+                    ></textarea>
+                </div>
+
+                <div class="field">
+                    <label for="benefits">What are they offering?</label>
+                    <textarea
+                        id="benefits"
+                        name="benefits"
+                        rows="4"
+                        placeholder="Salary, benefits and other details..."
+                    ></textarea>
+                </div>
+
+            </div>
+
+            <div class="form-footer">
+                <span>
+                    You don't need to fill in every field.
+                </span>
+
+                <button type="submit" id="submit-button">
+                    Check this posting <span>→</span>
+                </button>
+            </div>
+
+        </form>
+
+        <p id="form-status" class="form-status" role="status"></p>
+
+
+        <!-- Prediction result -->
+        <section
+            id="result-panel"
+            class="result-panel"
+            hidden
+            aria-live="polite"
+        >
+
+            <div class="result-top">
+                <span class="section-number">02 / RESULT</span>
+                <span id="result-label" class="result-label"></span>
+            </div>
+
+            <div class="result-content">
+
+                <h3 id="result-heading"></h3>
+
+                <p id="result-description"></p>
+
+                <div class="score-area">
+                    <div>
+                        <span class="small-label">
+                            HOW STRONGLY DID THE MODEL FLAG THIS POSTING?
+                        </span>
+
+                        <strong id="score-value">0%</strong>
+                    </div>
+
+                    <div class="score-track">
+                        <div id="score-fill"></div>
+                    </div>
+                </div>
+
+                <p class="disclaimer" id="result-disclaimer"></p>
+
+            </div>
+
+        </section>
+
+    </section>
+
+
+    <!-- Research -->
+    <section class="research-section" id="research">
+
+        <div class="section-heading">
+            <div>
+                <span class="section-number">03 / WHAT WE FOUND</span>
+                <h2>Where does our model make mistakes?</h2>
+            </div>
+
+            <span class="section-note">Test set results</span>
+        </div>
+
+        <p class="section-intro">
+            We also checked whether the model makes similar mistakes
+            across different industries and job functions. Here's
+            what we found when we looked at its test results.
+        </p>
+
+        <div class="research-metrics">
+
+            <article>
+                <span>AVERAGE PRECISION (AP)</span>
+                <strong>88.75%</strong>
+            </article>
+
+            <article>
+                <span>FRAUD PRECISION</span>
+                <strong>81.8%</strong>
+            </article>
+
+            <article>
+                <span>FRAUD RECALL</span>
+                <strong>85.5%</strong>
+            </article>
+
+        </div>
+
+
+        <!-- Industry report -->
+        <div class="report-block">
+
+            <h3>What happened across industries?</h3>
+
+            <div id="industry-status" class="report-status">
+                Loading industry results...
+            </div>
+
+            <div class="table-scroll">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Industry</th>
+                            <th>Postings</th>
+                            <th>Fraud</th>
+                            <th>False positives</th>
+                            <th>False negatives</th>
+                            <th>FP rate</th>
+                            <th>FN rate</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="industry-body"></tbody>
+                </table>
+            </div>
+
+        </div>
+
+
+        <!-- Function report -->
+        <div class="report-block">
+
+            <h3>What happened across job functions?</h3>
+
+            <div id="function-status" class="report-status">
+                Loading job-function results...
+            </div>
+
+            <div class="table-scroll">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Job function</th>
+                            <th>Postings</th>
+                            <th>Fraud</th>
+                            <th>False positives</th>
+                            <th>False negatives</th>
+                            <th>FP rate</th>
+                            <th>FN rate</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="function-body"></tbody>
+                </table>
+            </div>
+
+        </div>
+
+        <p class="section-intro">
+            Some categories have very few examples. Their error
+            percentages should be read carefully, as even one
+            incorrect prediction can change the result considerably.
+        </p>
+
+    </section>
+
+
+    <!-- Methodology -->
+    <section class="method-section" id="method">
+
+        <span class="section-number">04 / A LITTLE ABOUT THE MODEL</span>
+
+        <h2>How does it work?</h2>
+
+        <div class="method-grid">
+
+            <div>
+                <h3>Where did the data come from?</h3>
+
+                <p>
+                    Actually, our model uses the Employment Scam Aegean
+                    Dataset (EMSCAD), which contains historical job
+                    advertisements that were collected between
+                    2012 and 2014.
+                </p>
+            </div>
+
+            <div>
+                <h3>How does the model work?</h3>
+
+                <p>
+                    We use TF-IDF to turn job-posting text into
+                    numerical features. Logistic Regression then
+                    learns patterns that can help distinguish
+                    fraudulent postings from legitimate ones.
+                </p>
+            </div>
+
+            <div>
+                <h3>What does the score mean?</h3>
+
+                <p>
+                    The score shows how strongly the model associates
+                    a posting with the fraudulent class. It is not
+                    a verified probability of fraud.
+                </p>
+            </div>
+
+            <div>
+                <h3>What should you keep in mind?</h3>
+
+                <p>
+                    The dataset contains older job advertisements,
+                    so the model may not recognise every type of
+                    scam seen today. It cannot verify an employer
+                    or guarantee that a job offer is genuine.
+                </p>
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<footer>
+    <span>OFFER<span class="footer-accent">SHIELD</span></span>
+
+    <span>AN EXPERIMENTAL JOB POSTING CHECKER</span>
+
+    <span>2026</span>
+</footer>
+
+</body>
+</html>
