@@ -4,9 +4,6 @@
 
 [Visit OfferShield](https://offershield-virid.vercel.app/)
 
-<img width="1306" height="709" alt="image" src="https://github.com/user-attachments/assets/c1b62c3a-ef91-42fb-b591-dc1a58b99fee" />
-<img width="1291" height="712" alt="image" src="https://github.com/user-attachments/assets/0fc5258d-8617-4000-8e03-c6fe2ba46cc3" />
-
 
 Paste a job advertisement and see what patterns our model identifies. It might help you decide what deserves a closer look before applying.
 
